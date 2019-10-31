@@ -16,16 +16,14 @@ struct song_node * insert_inorder(struct song_node *p, char *sname, char *sartis
     return insert_front(p, sname, sartist);
   }
   if (strcmp(sartist, p->artist) > 0) {
-    p->next = insert_inorder(p, sname, sartist);
+    p->next = insert_inorder(p->next, sname, sartist);
     return p;
   }
   if (strcmp(sartist, p->artist) == 0) {
-    if (strcmp(sname, p->name) < 0) {
-      p->next = insert_front(p, sname, sartist);
+    if (strcmp(sname, p->name) >= 0) {
+      p->next = insert_inorder(p->next, sname, sartist);
       return p;
     }
-    p->next = insert_inorder(p, sname, sartist);
-    return p;
   }
   return insert_front(p, sname, sartist);
 }
