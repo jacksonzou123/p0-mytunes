@@ -35,7 +35,6 @@ void print_list(struct song_node *p){
     p = p->next;
   }
   printf("]\n");
-
 }
 
 struct song_node * find_song(struct song_node *p, char *sartist, char *sname) {
@@ -51,29 +50,26 @@ struct song_node * find_firstsong(struct song_node *p, char *sartist) {
 // }
 
 struct song_node * remove_node(struct song_node *p, char *sartist, char *sname) {
-  struct song_node * new;
-  if (!strcmp(p->artist,sartist)&& !strcmp(p->name,sname)) {
-    int more = 1;
-    if (p->next == NULL) {
-      more = 0;
-    }
-    new = p->next;
-    free(p);
-    if (more) {
-      new = remove_node(new, sartist, sname);
-    }
-    return new;
+  struct song_node *start = p;
+  if (!strcmp(p->artist,sartist) && !strcmp(p->name,sname)){
+    p = p->next;
+    return start;
   }
-  else {
-    int more = 1;
-    if (p->next == NULL) {
-      more = 0;
+  while (p->next) {
+    if (!strcmp(p->next->artist,sartist) && !strcmp(p->next->name,sname)) {
+      if (!p->next->next){
+        free(p->next);
+        p->next = NULL;
+        return start;
+      }
+      struct song_node *temp = p->next->next;
+      free(p->next);
+      p->next = temp;
+      return start;
     }
-    if (more) {
-      p->next = remove_node(p->next, sartist, sname);
-    }
-    return p;
+    p = p->next;
   }
+  return start;
 }
 
 struct song_node * free_list(struct song_node *p) {
