@@ -52,28 +52,16 @@ struct song_node * find_firstsong(struct song_node *p, char *sartist) {
 
 struct song_node * remove_node(struct song_node *p, char *sartist, char *sname) {
   struct song_node * new;
-  if (!strcmp(p->artist,sartist)&& !strcmp(p->name,sname)) {
-    int more = 1;
-    if (p->next == NULL) {
-      more = 0;
+  if (p) {
+    if (!strcmp(p->artist,sartist)&& !strcmp(p->name,sname)) {
+      new = p->next;
+      free(p);
+      p = NULL;
+      return new;
     }
-    new = p->next;
-    free(p);
-    if (more) {
-      new = remove_node(new, sartist, sname);
-    }
-    return new;
+    p->next = remove_node(p->next, sartist, sname);
   }
-  else {
-    int more = 1;
-    if (p->next == NULL) {
-      more = 0;
-    }
-    if (more) {
-      p->next = remove_node(p->next, sartist, sname);
-    }
-    return p;
-  }
+  return p;
 }
 
 struct song_node * free_list(struct song_node *p) {
