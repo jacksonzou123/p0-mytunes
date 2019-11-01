@@ -6,30 +6,28 @@
 int main(){
   printf("PROGRAM START\n");
   struct song_node *test = NULL;
-  printf("Empty list:\n");
+  printf("\nEmpty list:\n");
   print_list(test);
-  printf("Filling list.\n");
+  printf("\nFilling list.\n");
 
-  test = insert_inorder(test, "i had a big brain", "juntao lei");
-  test = insert_inorder(test, "jaha", "wing wong");
-  test = insert_inorder(test, "ha", "wing wong");
-  test = insert_inorder(test, "jaha", "wdfing wong");
-  test = insert_inorder(test, "jaha", "aawing wong");
-  test = insert_inorder(test, "jadfha", "bbwing wong");
-  test = insert_inorder(test, "asfjaha", "ccwing wong");
-  test = insert_inorder(test, "jaha", "sdwing wong");
-  test = insert_inorder(test, "jaha", "fefwing wong");
-  test = insert_inorder(test, "jasfaha", "fefwing wong");
-  test = insert_inorder(test, "a", "sawing wong");
-  test = insert_inorder(test, "jah", "dffewwing wong");
-  printf("Filled list:\n");
+  test = insert_inorder(test, "I Had a Big Brain", "JunTao Lei");
+  test = insert_inorder(test, "Sucking at C", "Jeff Lin");
+  test = insert_inorder(test, "Big Boi Basses", "Jackson Zou");
+  test = insert_inorder(test, "Snaky Snares", "Jeff Lin");
+  test = insert_inorder(test, "I Love Jesus", "JunTao Lei");
+  test = insert_inorder(test, "Bad Song", "Big Bobby");
+  test = insert_inorder(test, "AAASong", "AAAArtist");
+  test = insert_inorder(test, "No More Ideas", "Random Man");
+  test = insert_inorder(test, "Pointer Power", "DW");
+  test = insert_inorder(test, "ZZZSong", "ZZZArtist");
+  printf("\nFilled list:\n");
   print_list(test);
 
-  printf("Removing node.\n");
-  test = remove_node(test, "juntao lei", "i had a big brain");
+  printf("\nRemoving node.\n");
+  test = remove_node(test, "JunTao Lei", "I Had a Big Brain");
   printf("Removing front node.\n");
-  test = remove_node(test, "aawing wong", "jaha");
+  test = remove_node(test, "AAAArtist", "AAASong");
   printf("Removing end node.\n");
-  test = remove_node(test, "wing wong", "jaha");
+  test = remove_node(test, "ZZZArtist", "ZZZSong");
   print_list(test);
 }
