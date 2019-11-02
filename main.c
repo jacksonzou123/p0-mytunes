@@ -30,4 +30,15 @@ int main(){
   printf("Removing end node.\n");
   test = remove_node(test, "ZZZArtist", "ZZZSong");
   print_list(test);
+
+  struct song_node *find = NULL;
+  find = find_firstsong(test, "Jackson Zou");
+  struct song_node *find2 = NULL;
+  find2 = find_song(test, "Jackson Zou", "Big Boi Basses");
+  printf("Test:\n");
+  print_list(test);
+  printf("Find:\n");
+  print_list(find);
+  printf("Find2:\n");
+  print_list(find2);
 }
