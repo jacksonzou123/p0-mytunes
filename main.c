@@ -4,133 +4,116 @@
 #include "library.h"
 
 int main(){
-  // printf("PROGRAM START\n");
-  // struct song_node *test = NULL;
-  // printf("\nEmpty list:\n");
-  // print_list(test);
-  // printf("\nFilling list.\n");
-  //
-  // test = insert_inorder(test, "juntao lei", "i had a big brain");
-  // test = insert_inorder(test, "jeff lin", "sucking at c");
-  // test = insert_inorder(test, "jackson zou", "big boi basses");
-  // test = insert_inorder(test, "jeff lin", "wheee");
-  // test = insert_inorder(test, "juntao lei", "pew pew");
-  // test = insert_inorder(test, "big bobby", "dap me ip");
-  // test = insert_inorder(test, "bing bong", "paper");
-  // test = insert_inorder(test, "random man", "halahal");
-  // test = insert_inorder(test, "dw", "dw");
-  // test = insert_inorder(test, "jackson zou", "zzartist");
-  // printf("\nFilled list:\n");
-  // print_list(test);
-  //
-  // printf("\nRemoving node.\n");
-  // test = remove_node(test, "juntao lei", "i had a big brain");
-  // printf("Removing front node.\n");
-  // test = remove_node(test, "big bobby", "dap me ip");
-  // printf("Removing end node.\n");
-  // test = remove_node(test, "random man", "halahal");
-  // print_list(test);
-  // printf("\n");
-  //
-  // struct song_node *find = NULL;
-  // find = find_firstsong(test, "jackson zou");
-  // struct song_node *find2 = NULL;
-  // find2 = find_song(test, "jackson zou", "big boi basses");
-  // printf("Test:\n");
-  // print_list(test);
-  // printf("Find:\n");
-  // print_list(find);
-  // printf("Find2:\n");
-  // print_list(find2);
+  printf("\n\n\n\n\n========== TESTING LINKED LIST ==========\n");
+
+  struct song_node *test = NULL;
+
+  printf("\nEmpty list: ");
+  print_list(test);
+
+  printf("\nBuilding song linked list:\n");
+  test = insert_inorder(test, "juntao lei", "i had a big brain");
+  test = insert_inorder(test, "jeff lin", "sucking at c");
+  test = insert_inorder(test, "jackson zou", "big boi basses");
+  test = insert_inorder(test, "jeff lin", "wheee");
+  test = insert_inorder(test, "jackson zou", "pew pew");
+  test = insert_inorder(test, "jackson zou", "dap me ip");
+  test = insert_inorder(test, "aaaartist", "aaasong");
+  test = insert_inorder(test, "zzzartist", "zzzsong");
+  test = insert_inorder(test, "dw", "dw is the best");
+  print_list(test);
+
+  printf("\nSearching for artist jeff lin: wheee\n");
+  struct song_node *find1 = NULL;
+  find1 = find_song(test, "jeff lin", "wheee");
+  printf("%p - ", find1);
+  print_node(find1);
+  struct song_node *find2 = NULL;
+  printf("Searching for fakeartist: fakename\n");
+  find2 = find_song(test, "fakeartist", "fakename");
+  printf("%p - ", find2);
+  print_node(find2);
+
+  printf("\nSearching for first song by jackson zou\n");
+  struct song_node *find3 = NULL;
+  find3 = find_firstsong(test, "jackson zou");
+  printf("%p - ", find3);
+  print_node(find3);
+
+  printf("\nFinding random song\n");
+  struct song_node *find4 = NULL;
+  find4 = random_song(test);
+  printf("%p - ", find4);
+  print_node(find4);
+
+  printf("\nRemoving specified node\n");
+  printf("Removing juntao lei: i had a big brain\n");
+  test = remove_node(test, "juntao lei", "i had a big brain");
+  printf("Removing front node\n");
+  test = remove_node(test, "aaaartist", "aaasong");
+  printf("Removing end node\n");
+  test = remove_node(test, "zzzartist", "zzzsong");
+  print_list(test);
+
+  printf("\nFreeing list\n");
+  test = free_list(test);
+  printf("Empty list: ");
+  print_list(test);
+
+  printf("\n\n\n\n\n========== TESTING LIBRARY ==========\n");
 
   struct song_node *table[27] = {NULL};
-  addsong(table, "on zou", "i win");
-  addsong(table, "//wack", "wingwong");
-  addsong(table, "untao lei", "i had a big brain");
-  addsong(table, "ff lin", "sucking at c");
-  addsong(table, "kson zou", "big boi basses");
-  addsong(table, "f lin", "wheee");
-  addsong(table, "ntao lei", "pew pew");
-  addsong(table, "bg bobby", "dap me ip");
-  addsong(table, "ing bong", "paper");
-  addsong(table, "random man", "halahal");
-  addsong(table, "dw", "dw");
-  addsong(table, "ab", "zzartist");
-  addsong(table, "cdg", "zzartist");
-  addsong(table, "efu", "zzzzzzartist");
-  addsong(table, "fegrb", "zzartist");
-  addsong(table, "efu", "zzartist");
-  addsong(table, ",mnb", "zzartist");
-  addsong(table, "jas", "zzartist");
-  addsong(table, "zxh", "zzartist");
-  addsong(table, "edf", "zzartist");
-  printLibrary(table);
-  struct song_node *finding1 = findSong(table, "f lin", "wheee");
 
-  printf("\nPrinting finding1: f lin, wheee\n");
-  print_list(finding1);
-
-  // struct song_node *find = NULL;
-  // find = find_firstsong(test, "jackson zou");
-  // struct song_node *find2 = NULL;
-  // find2 = find_song(test, "jackson zou", "big boi basses");
-  // printf("Test:\n");
-  // print_list(test);
-  // printf("Find:\n");
-  // print_list(find);
-  // printf("Find2:\n");
-  // print_list(find2);
-  // printf("\n");
-
-  // struct song_node *table[27] = {NULL};
-  // addsong(table, "a1", "song1");
-  // addsong(table, "a2", "song2");
-  // addsong(table, "c1", "song3");
-  // addsong(table, "c2", "song4");
-  // addsong(table, "e1", "song5");
-  // addsong(table, "e2", "song6");
-  // addsong(table, "g1", "song7");
-  // addsong(table, "g2", "song8");
-  // addsong(table, "i1", "song9");
-  // addsong(table, "i2", "song10");
-  // addsong(table, "k1", "song11");
-  // addsong(table, "k2", "song12");
-  // addsong(table, "m1", "song13");
-  // addsong(table, "m2", "song14");
-  // addsong(table, "o1", "song15");
-  // addsong(table, "o2", "song16");
-  // addsong(table, "q1", "song17");
-  // addsong(table, "q2", "song18");
-  // addsong(table, "s1", "song19");
-  // addsong(table, "s2", "song20");
-  // addsong(table, "u1", "song21");
-  // addsong(table, "u2", "song22");
-  // addsong(table, "w1", "song23");
-  // addsong(table, "w2", "song24");
-  // addsong(table, "y1", "song25");
-  // addsong(table, "y2", "song26");
-  // addsong(table, "!@", "song27");
-  // addsong(table, "$&", "song28");
-
-  printf("\nPrinting finding2: jas, zzartist\n");
-  struct song_node *finding2 = findArtist(table, "jas");
-  print_list(finding2);
-
-  printf("\nRemoving jas, zzartist\n");
-  removeSong(table, "jas", "zzartist");
+  printf("\nBuilding music library:\n");
+  addsong(table, "aaaartist", "aaasong");
+  addsong(table, "zzzartist", "zzzsong");
+  addsong(table, "aaaartist", "randomsong");
+  addsong(table, "zzzzartist", "otherrandomsong");
+  addsong(table, "leff jin", "big boi basses");
+  addsong(table, "leff jin", "chickenbone");
+  addsong(table, "juntao lei", "big man anthem");
+  addsong(table, "juntao lei", "fried dumplings mmm");
+  addsong(table, "zackson jou", "music title");
+  addsong(table, "bobby boy", "jeff likes pizza");
+  addsong(table, "bobby boy", "big fluffy dogs");
+  addsong(table, "bobby boy", "my name is fake");
+  addsong(table, "$niper", "ez money");
+  addsong(table, "$niper", "fat stacks and racks");
+  addsong(table, "&persand", "alakazam");
+  addsong(table, "coolrapper", "im not so cool");
+  addsong(table, "fredthefireman", "fire is hot");
+  addsong(table, "peter", "hi im peter");
+  addsong(table, "unoriginal", "im out of ideas");
+  addsong(table, "generic rapper", "generic rap song");
   printLibrary(table);
 
-  printf("\nFinding artists with 'f':\n");
-  searchLetter(table, 'f');
+  printf("\nSearching for artist zackson jou: music title\n");
+  struct song_node *dnif1 = NULL;
+  dnif1 = findSong(table, "zackson jou", "music title");
+  printf("%p - ", dnif1);
+  print_node(dnif1);
 
-  printf("\nFinding artist 'efu':\n");
-  searchArtist(table, "efu");
+  printf("\nSearching for artist bobby boy\n");
+  searchArtist(table, "bobby boy");
 
-  printf("\nShuffle\n");
+  printf("\nSearching for letter z\n");
+  searchLetter(table, 'z');
+
+  printf("\nShuffled ten songs\n");
   shuffle(table);
 
-  printf("\nClearing library\n");
+  printf("\nDeleting specified songs\n");
+  printf("Removing juntao lei: fried dumplings mmm\n");
+  removeSong(table, "juntao lei", "fried dumplings mmm");
+  printf("Removing aaaartist: aaasong\n");
+  removeSong(table, "aaaartist", "aaasong");
+  printf("Removing %persand: alakazam\n");
+  removeSong(table, "&persand", "alakazam");
+  printLibrary(table);
+
+  printf("\nFreeing library\n");
   clearLibrary(table);
+  printf("Empty library:\n");
   printLibrary(table);
   printf("\n");
 

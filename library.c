@@ -50,15 +50,6 @@ void clearLibrary(struct song_node **library) {
   }
 }
 
-struct song_node *findArtist(struct song_node **library, char *sartist) {
-  if (library) {
-    if (sartist[0] - 97 >= 27 || sartist[0] - 97 < 0) {
-      return find_firstsong(library[26], sartist);
-    }
-      return find_firstsong(library[sartist[0] - 97], sartist);
-  }
-}
-
 void searchLetter(struct song_node **library, char c) {
   if (library) {
     if (c - 97 >= 27 || c - 97 < 0) {
