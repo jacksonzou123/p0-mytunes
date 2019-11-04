@@ -3,21 +3,38 @@
 #include "linkedlist.h"
 #include "library.h"
 
-struct song_node ** addsong(struct song_node **snode, char *sartist, char *sname) {
-  if (snode) {
+void addsong(struct song_node **library, char *sartist, char *sname) {
+  if (library) {
     if (sartist[0] - 97 >= 27 || sartist[0] - 97 < 0) {
-        *(snode + 27) = insert_inorder(*(snode + 27), sname, sartist);
+        *(library + 26) = insert_inorder(*(library + 26), sartist, sname);
     }
     else {
-      *(snode + sartist[0] - 97) = insert_inorder(*(snode + sartist[0] - 97), sname, sartist);
+      *(library + sartist[0] - 97) = insert_inorder(*(library + sartist[0] - 97), sartist, sname);
     }
   }
-  return snode;
 }
 
-struct song_node ** printLibrary(struct song_node **snode) {
+void printLibrary(struct song_node **library) {
   int i;
   for (i = 0; i<27; i++) {
-    print_list(snode[i]);
+    print_list(library[i]);
+  }
+}
+
+struct song_node * findSong(struct song_node **library, char *sartist, char *sname) {
+  if (library) {
+    if (sartist[0] - 97 >= 27 || sartist[0] - 97 < 0) {
+      return find_song(library[26], sartist, sname);
+    }
+    return find_song(library[sartist[0]-97], sartist, sname);
+  }
+}
+
+void removeSong(struct song_node **library, char *sartist, char *sname) {
+  if (library) {
+    if (sartist[0] - 97 >= 27 || sartist[0] - 97 < 0) {
+      remove_node(library[26], sartist, sname);
+    }
+      remove_node(library[sartist[0]-97], sartist, sname);
   }
 }
