@@ -3,7 +3,6 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include "songs.h"
 
 struct song_node{
   char name[100];
@@ -11,9 +10,9 @@ struct song_node{
   struct song_node *next;
 };
 
-struct song_node * insert_front(struct song_node *p, char *sname, char *sartist);
+struct song_node * insert_front(struct song_node *p, char *sartist, char *sname);
 
-struct song_node * insert_inorder(struct song_node *p, char *sname, char *sartist);
+struct song_node * insert_inorder(struct song_node *p, char *sartist, char *sname);
 
 void print_list(struct song_node *p);
 
