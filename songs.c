@@ -39,7 +39,6 @@ void print_list(struct song_node *p){
 
 struct song_node * find_song(struct song_node *p, char *sartist, char *sname) {
   while (p) {
-    printf("%s, %s, %d, %d", p->artist, p->name, strcmp(p->artist,sartist), strcmp(p->name,sname));
     if (!strcmp(p->artist,sartist) && !strcmp(p->name,sname)) {
       return p;
     }
