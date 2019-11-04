@@ -42,8 +42,8 @@ int main(){
   printf("Find2:\n");
   print_list(find2);
 
-  struct song_node **table = calloc(27 , sizeof(struct song_node));
-  table = addSong(table, "jackson zou","i win");
+  struct song_node **table = calloc(27, sizeof(struct song_node));
+  table = addSong(table, "jackson zou", "i win");
   // int i;
   // for (i = 0; i < 27; i++) {
   //   struct song_node *new = calloc(1, sizeof(struct song_node));
