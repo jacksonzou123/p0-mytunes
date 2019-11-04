@@ -8,7 +8,7 @@
 void addsong(struct song_node **library, char *sartist, char *sname) {
   if (library) {
     if (sartist[0] - 97 >= 27 || sartist[0] - 97 < 0) {
-        *(library + 27) = insert_inorder(*(library + 27), sartist, sname);
+        *(library + 26) = insert_inorder(*(library + 26), sartist, sname);
     }
     else {
       *(library + sartist[0] - 97) = insert_inorder(*(library + sartist[0] - 97), sartist, sname);
@@ -20,6 +20,42 @@ void printLibrary(struct song_node **library) {
   int i;
   for (i = 0; i < 27; i++) {
     print_list(library[i]);
+  }
+}
+
+struct song_node * findSong(struct song_node **library, char *sartist, char *sname) {
+  if (library) {
+    if (sartist[0] - 97 >= 27 || sartist[0] - 97 < 0) {
+      return find_song(library[26], sartist, sname);
+    }
+    return find_song(library[sartist[0]-97], sartist, sname);
+  }
+}
+
+void removeSong(struct song_node **library, char *sartist, char *sname) {
+  if (library) {
+    if (sartist[0] - 97 >= 27 || sartist[0] - 97 < 0) {
+      library[26] = remove_node(library[26], sartist, sname);
+    }
+      library[sartist[0] - 97] = remove_node(library[sartist[0]-97], sartist, sname);
+  }
+}
+
+void clearLibrary(struct song_node **library) {
+  if (library) {
+    int i;
+    for (i = 0; i < 27; i++) {
+      library[i] = free_list(library[i]);
+    }
+  }
+}
+
+struct song_node *findArtist(struct song_node **library, char *sartist) {
+  if (library) {
+    if (sartist[0] - 97 >= 27 || sartist[0] - 97 < 0) {
+      return find_firstsong(library[26], sartist);
+    }
+      return find_firstsong(library[sartist[0] - 97], sartist);
   }
 }
 
@@ -38,20 +74,17 @@ void searchArtist(struct song_node **library, char *sartist) {
   if (library) {
     struct song_node *list = NULL;
     struct song_node *p;
-    if (sartist[0] - 97 >= 27 || sartist[0] - 97< 0) {
-      p = *(library + 27);
+    if (sartist[0] - 97 >= 27 || sartist[0] - 97 < 0) {
+      p = library[27];
     }
     else {
-      p = *(library + (sartist[0] - 97));
-      printf("Reached\n");
+      p = library[sartist[0] - 97];
     }
-    print_list(p);
     while (p) {
-      printf("%s %s %s\n", sartist, p->artist, p->name);
       if (!strcmp(p->artist,sartist)) {
-        insert_inorder(list, p->artist, p->name);
+        list = insert_inorder(list, p->artist, p->name);
       }
-      p++;
+      p = p->next;
     }
     print_list(list);
   }
@@ -60,18 +93,26 @@ void searchArtist(struct song_node **library, char *sartist) {
 void shuffle(struct song_node **library) {
   srand(time(NULL));
   struct song_node *list = NULL;
-  struct song_node *p;
+  struct song_node *p = NULL;
   int i = 0;
   while (i < 10) {
     int r1 = rand()%27;
-    p = library[r1];
     int x = 0;
+    p = library[r1];
     while (p) {
       x++;
+      p = p->next;
     }
-    p = library[r1];
-    int r2 = rand()%x;
-    insert_front(list, (p+r2)->artist, (p+r2)->name);
+    if (x > 0){
+      p = library[r1];
+      int r2 = rand()%x;
+      while (r2 > 0) {
+        p = p->next;
+        r2--;
+      }
+      list = insert_front(list, p->artist, p->name);
+      i++;
+    }
   }
   print_list(list);
 

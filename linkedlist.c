@@ -31,7 +31,7 @@ struct song_node * insert_inorder(struct song_node *p, char *sartist, char *snam
 void print_list(struct song_node *p){
   printf("[ ");
   while (p != NULL) {
-    printf("[%s, %s] ", p->name, p->artist);
+    printf("[%s, %s] ", p->artist, p->name);
     p = p->next;
   }
   printf("]\n");
