@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "songs.h"
-#include "list.h"
+#include "linkedlist.h"
+#include "library.h"
 
 int main(){
   printf("PROGRAM START\n");
@@ -30,6 +30,7 @@ int main(){
   printf("Removing end node.\n");
   test = remove_node(test, "random man", "halahal");
   print_list(test);
+  printf("\n");
 
   struct song_node *find = NULL;
   find = find_firstsong(test, "jackson zou");
@@ -42,11 +43,26 @@ int main(){
   printf("Find2:\n");
   print_list(find2);
 
-  struct song_node **table = calloc(27, sizeof(struct song_node));
-  table = addSong(table, "jackson zou", "i win");
+  struct song_node *table[27] = {NULL};
+  addsong(table, "jackson zou", "i win");
+  printLibrary(table);
   // int i;
   // for (i = 0; i < 27; i++) {
   //   struct song_node *new = calloc(1, sizeof(struct song_node));
   //   *(table + i) = new;
   // }
+
+  // printf("\n");
+  //
+  // struct song_node * table[27];
+  // int i;
+  // for (i = 0; i < 27; i++) {
+  //   struct song_node *new = NULL;
+  //   table[i] = new;
+  // }
+  // table[0] = insert_inorder(table[0], "jeff","title");
+  // for (i = 0; i < 27; i++) {
+  //   print_list(table[i]);
+  // }
+
 }

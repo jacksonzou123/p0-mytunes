@@ -1,11 +1,11 @@
-all: main.o songs.o list.o
-	gcc -o program main.o songs.o
+all: main.o linkedlist.o library.o
+	gcc -o program main.o linkedlist.o library.o
 
-main.o: main.c songs.h list.h 
+main.o: main.c linkedlist.h library.h
 	gcc -c main.c
 
-songs.o: songs.c songs.h
-	gcc -c songs.c
+linkedlist.o: linkedlist.c linkedlist.h
+	gcc -c linkedlist.c
 
-list.o: list.c list.h songs.h
-	gcc -c list.c
+library.o: library.c library.h linkedlist.h
+	gcc -c library.c

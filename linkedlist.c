@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "songs.h"
+#include "linkedlist.h"
 
 struct song_node * insert_front(struct song_node *p, char *sartist, char *sname) {
   struct song_node *new = calloc(1, sizeof(struct song_node));
@@ -39,7 +39,6 @@ void print_list(struct song_node *p){
 
 struct song_node * find_song(struct song_node *p, char *sartist, char *sname) {
   while (p) {
-    // printf("%s, %s, %d, %d", p->artist, p->name, strcmp(p->artist,sartist), strcmp(p->name,sname));
     if (!strcmp(p->artist,sartist) && !strcmp(p->name,sname)) {
       return p;
     }
