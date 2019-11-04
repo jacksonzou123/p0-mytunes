@@ -33,8 +33,26 @@ struct song_node * findSong(struct song_node **library, char *sartist, char *sna
 void removeSong(struct song_node **library, char *sartist, char *sname) {
   if (library) {
     if (sartist[0] - 97 >= 27 || sartist[0] - 97 < 0) {
-      remove_node(library[26], sartist, sname);
+      library[26] = remove_node(library[26], sartist, sname);
     }
-      remove_node(library[sartist[0]-97], sartist, sname);
+      library[sartist[0] - 97] = remove_node(library[sartist[0]-97], sartist, sname);
+  }
+}
+
+void clearLibrary(struct song_node **library) {
+  if (library) {
+    int i;
+    for (i = 0; i < 27; i++) {
+      library[i] = free_list(library[i]);
+    }
+  }
+}
+
+struct song_node *findArtist(struct song_node **library, char *sartist) {
+  if (library) {
+    if (sartist[0] - 97 >= 27 || sartist[0] - 97 < 0) {
+      return find_firstsong(library[26], sartist);
+    }
+      return find_firstsong(library[sartist[0] - 97], sartist);
   }
 }

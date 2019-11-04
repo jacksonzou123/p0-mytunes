@@ -11,3 +11,7 @@ void printLibrary(struct song_node **snode);
 struct song_node * findSong(struct song_node **library, char *sartist, char *sname);
 
 void removeSong(struct song_node **library, char *sartist, char *sname);
+
+void clearLibrary(struct song_node **library);
+
+struct song_node *findArtist(struct song_node **library, char *sartist);

@@ -67,8 +67,20 @@ int main(){
   printLibrary(table);
   struct song_node *finding1 = findSong(table, "f lin", "wheee");
 
-  printf("\nPrinting finding1\n");
+  printf("\nPrinting finding1: f lin, wheee\n");
   print_list(finding1);
+
+  printf("\nPrinting finding2: jas, zzartist\n");
+  struct song_node *finding2 = findArtist(table, "jas");
+  print_list(finding2);
+
+  printf("\nRemoving jas, zzartist\n");
+  removeSong(table, "jas", "zzartist");
+  printLibrary(table);
+
+  printf("\nClearing library\n");
+  clearLibrary(table);
+  printLibrary(table);
   // int i;
   // for (i = 0; i < 27; i++) {
   //   struct song_node *new = calloc(1, sizeof(struct song_node));
